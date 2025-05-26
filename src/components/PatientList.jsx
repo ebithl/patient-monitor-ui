@@ -34,10 +34,10 @@ import PatientCard from './PatientVitalCard';
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
   const [risks, setRisks] = useState({});
-
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const fetchData = () => {
-    fetch('http://localhost:5000/api/patients')
+    fetch(`${API_BASE}/api/patients`)
       .then(res => res.json())
       .then(async data => {
         setPatients(data);
@@ -47,7 +47,7 @@ const PatientList = () => {
         for (const patient of data) {
           const latestVitals = patient.vitals.at(-1);
           try {
-            const res = await fetch('http://localhost:5000/api/predict', {
+            const res = await fetch(`${API_BASE}/predict`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(latestVitals)
