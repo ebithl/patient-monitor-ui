@@ -34,7 +34,7 @@ import PatientCard from './PatientVitalCard';
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
   const [risks, setRisks] = useState({});
-  const API_BASE = process.env.REACT_APP_API_BASE_URL;
+  const API_BASE = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchData = () => {
     fetch(`${API_BASE}/api/patients`)
