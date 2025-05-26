@@ -54,13 +54,13 @@ const PatientList = () => {
             });
             const result = await res.json();
             
-            console.log("############## result.risk_level ############### " + result.risk);
+            console.log("############## result.risk_level ############### " + result.risk_level);
             
-            riskData[patient.id] = result.risk;
+            //riskData[patient.id] = result.risk;
             
-            //riskData[patient.id] = result.risk_level === 0 ? 'low' :
-            //                       result.risk_level === 1 ? 'medium' :
-            //                       result.risk_level === 2 ? 'high' : 'unknown';
+            riskData[patient.id] = result.risk_level === 0 ? 'low' :
+                                   result.risk_level === 1 ? 'medium' :
+                                   result.risk_level === 2 ? 'high' : 'unknown';
           } catch (err) {
             console.error(`Error predicting risk for patient ${patient.id}`, err);
             riskData[patient.id] = 'unknown';
